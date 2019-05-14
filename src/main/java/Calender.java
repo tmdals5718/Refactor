@@ -7,15 +7,10 @@ public class Calenderr {
 
     int[] month_table = new int[]{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; // 각 월의 총 일수
 
-    public int is_leap_year(int n) { // 윤년이 있는 년도를 조사하는 메소드. 윤년인 경우 1리턴
-        if (n % 4 == 0) { // 4의 배수는 윤년
-            if (n % 100 == 0) { // 100의 배수는 윤년이 아님
-                if (n % 400 == 0) // 그중에서 400의 배수는 윤년
-                    return 1;
-                return 0;
-            }
+     public int is_leap_year(int n) { // 윤년이 있는 년도를 조사하는 메소드. 윤년인 경우 1리턴
+        if ( (n % 4 == 0 && n % 100 != 0 )|| n%400 ==0 ) 
             return 1;
-        } else
+        else
             return 0;
     }
 
