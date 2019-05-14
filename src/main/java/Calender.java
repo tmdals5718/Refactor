@@ -4,7 +4,8 @@ public class Calenderr {
     int base_year = 1980; // 기준 연도
     int base_month = 1; // 기준 월. 실제로는 1980년 1월 1을 기준으로 계산
     int total_sum = 0; // 기준 날짜에서 입력받은 날짜까지 총 일수
-
+    int year = 0;
+    int month = 0;
     int[] month_table = new int[]{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; // 각 월의 총 일수
 
      public int is_leap_year(int n) { // 윤년이 있는 년도를 조사하는 메소드. 윤년인 경우 1리턴
@@ -64,12 +65,9 @@ public class Calenderr {
         return true;
     }
 
-    void result(int nYear, int mth) {
-        int i, j;
-        int d = 0;
-        int year = 0;
-        int month;
-        int sum = 0;
+    void result() {
+        setYear();
+        setmonth();
 
         convert_to_day(nYear); // 기준연도부터 현재 연도까지 년 단위로 총일수를 구함
 
@@ -110,14 +108,25 @@ public class Calenderr {
         }
     }
 
+    public int getYear(){ //get
+        return year;
+    }
+    public void setYear(){ //set
+        year = s.nextInt();
+    }
+    public int getmonth(){ //get
+        return month;
+    }
+    public void setmonth(){ //set
+        month = s.nextInt();
+    }
+
     public static void main(String args[]) {
         int year, month;
         Scanner s = new Scanner(System.in);
-        Calenderr cldUser = new Calenderr();
+        Calender cldUser = new Calender();
         System.out.println("연도와 월을 입력하시오. (ex. 2019 5)");
-        year = s.nextInt(); //연도 입력
-        month = s.nextInt();// 월을 입력
-        cldUser.result(year, month); // year, month를 넘겨주면 cldUser클래스가 결과를 출력
+        cldUser.result();
     }
 
 }
