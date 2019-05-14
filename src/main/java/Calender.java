@@ -1,6 +1,6 @@
-﻿import java.util.Scanner;
+import java.util.Scanner;
 
-public class calenderr {
+public class Calenderr {
     int base_year = 1980; // 기준 연도
     int base_month = 1; // 기준 월. 실제로는 1980년 1월 1을 기준으로 계산
     int total_sum = 0; // 기준 날짜에서 입력받은 날짜까지 총 일수
@@ -118,7 +118,7 @@ public class calenderr {
     public static void main(String args[]) {
         int year, month;
         Scanner s = new Scanner(System.in);
-        calenderr cldUser = new calenderr();
+        Calenderr cldUser = new Calenderr();
         System.out.println("연도와 월을 입력하시오. (ex. 2019 5)");
         year = s.nextInt(); //연도 입력
         month = s.nextInt();// 월을 입력
