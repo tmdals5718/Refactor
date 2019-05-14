@@ -65,46 +65,40 @@ public class Calenderr {
         return true;
     }
 
-    void result() {
+   void result() {
         setYear();
         setmonth();
 
-        convert_to_day(nYear); // 기준연도부터 현재 연도까지 년 단위로 총일수를 구함
+        convert_to_day(year);
 
-        int day; // 요일을 결정하는 변수. 예를들어 기준일부터 현재일까지 차이가 7이고
-        // 기준일이 월요일이면 7로 나눠서 나머지가 0이되니까 월요일임을 알수 있듯이
-        // day는 숫자로서 요일을 결정할 수 있음
-        
-        if (nYear >= base_year) {
-            if (is_leap_year(nYear) == 1) // 윤달이 낀날의 2월은 하루 증가
+        if (year >= base_year) {
+            if (is_leap_year(year) == 1)
                 month_table[1] = 29;
 
-            for (i = 0; i < (mth - base_month); i++)
+            for (int i = 0; i < (month - base_month); i++)
                 total_sum += month_table[i];
-            // 나머지 기준월부터 현재월까지의 총일수를 구함
-            // 즉 기준 연도의 월부터 현재 연도의 월까지의 총일수를 구함.
 
-            day = (total_sum + 2) % 7;
-            // 현재까지의 총일수를 7의 나머지로 연산. 2를 더해준 이유는 1980년도 1월 1일이 화요일이기 때문
+            int day = (total_sum + 2) % 7;
 
-            System.out.println("총 일수 = " + total_sum);
-            month = total_to_month(total_sum); // 입력받은 해당 날짜의 정확한 달을 구해서 저장
+            int Cun_month = total_to_month(total_sum);
 
-            System.out.println(month + "월의 달력");
-            System.out.println("일  월  화  수  목  금  토");
+            print(Cun_month,day);
 
-            for (i = 0; i < day; i++) // day 변수는 요일이므로 갯수만큼 공백을 만들어 줌.
-                System.out.print("\t");
+            month_table[1] = 28;
+        }
+    }
 
-            for (j = 1; j <= month_table[month - 1]; j++) {
-                // 배열은 0부터 시작하기때문에 month-1을 해줌
-                System.out.print(j + "\t");// j를 증가시켜가며 차례데로 날짜를 출력합니다.
-                if (((j + day) % 7) == 0)
-                    System.out.println();
-                //처음 요일을 출력하기위한 공백만큼 계산해서 출력
-            }
-            System.out.println();
-            month_table[1] = 28; // 윤년이었으면 다시 평년으로 바꾸어 줌
+    public void print(int Cun_month,int day){
+        System.out.println(month + "월의 달력");
+
+        System.out.println("일  월  화  수  목  금  토");
+
+        for (int i = 0; i < day; i++)
+            System.out.print("\t");
+        for (int j = 1; j <= month_table[Cun_month - 1]; j++) {
+            System.out.print(j + "\t");
+            if (((j + day) % 7) == 0)
+                System.out.println();
         }
     }
 
